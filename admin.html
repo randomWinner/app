@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <title>Random Winner Selector</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="header__icon">
+          <img
+            src="aspire.png"
+            alt="Aspire Pharma Logo"
+            style="max-height: 48px; margin-right: 16px; vertical-align: middle"
+          />
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 40 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="20"
+              cy="20"
+              r="18"
+              fill="url(#gradient1)"
+              stroke="rgba(255,255,255,0.2)"
+              stroke-width="2"
+            />
+            <path d="M20 8L25 18H15L20 8Z" fill="white" opacity="0.9" />
+            <circle cx="20" cy="25" r="4" fill="white" opacity="0.9" />
+            <defs>
+              <linearGradient
+                id="gradient1"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" style="stop-color: #1cb7bf" />
+                <stop offset="100%" style="stop-color: #1da6ad" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h1 class="title">Random Winner Selector</h1>
+      </header>
+
+      <main class="main">
+        <div class="panel winner-panel">
+          <!-- Left Panel: Participant Management -->
+          <div
+            class="panel panel--left"
+            style="max-width: 480px; margin: 0 auto"
+          >
+            <div class="panel__header">
+              <h2 class="panel__title">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10 2C5.58 2 2 5.58 2 10C2 14.42 5.58 18 10 18C14.42 18 18 14.42 18 10C18 5.58 14.42 2 10 2ZM10 16C6.69 16 4 13.31 4 10C4 6.69 6.69 4 10 4C13.31 4 16 6.69 16 10C16 13.31 13.31 16 10 16Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M10 8C9.45 8 9 8.45 9 9V13C9 13.55 9.45 14 10 14C10.55 14 11 13.55 11 13V9C11 8.45 10.55 8 10 8Z"
+                    fill="currentColor"
+                  />
+                  <circle cx="10" cy="6" r="1" fill="currentColor" />
+                </svg>
+                Manage Participants
+              </h2>
+            </div>
+
+            <form id="addParticipantsForm" class="add-form">
+              <div class="input-group">
+                <label for="participantsInput" class="input-label">
+                  Add New Participants
+                </label>
+                <textarea
+                  id="participantsInput"
+                  class="input-field"
+                  rows="6"
+                  placeholder="Enter names, one per line&#10;Example:&#10;John Doe&#10;Jane Smith&#10;Mike Johnson"
+                ></textarea>
+              </div>
+              <div class="button-group">
+                <button type="submit" class="btn btn--secondary">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 2V14M2 8H14"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  Add Participants
+                </button>
+                <button type="button" class="btn btn--danger" id="removeAllBtn">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 4L4 12M4 4L12 12"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  Clear All
+                </button>
+              </div>
+            </form>
+
+            <div class="participants-container">
+              <ul id="participantsList" class="participants-list"></ul>
+              <div
+                id="participantsLoading"
+                class="loading-state"
+                style="display: none; text-align: center; margin-top: 2rem"
+              >
+                <div class="loading-spinner"></div>
+                <span>Loading participants...</span>
+              </div>
+              <div
+                id="participantsError"
+                class="error-state"
+                style="display: none"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

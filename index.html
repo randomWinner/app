@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <title>Random Winner Selector</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="header__icon">
+          <img
+            src="aspire.png"
+            alt="Aspire Pharma Logo"
+            style="max-height: 48px; margin-right: 16px; vertical-align: middle"
+          />
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 40 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="20"
+              cy="20"
+              r="18"
+              fill="url(#gradient1)"
+              stroke="rgba(255,255,255,0.2)"
+              stroke-width="2"
+            />
+            <path d="M20 8L25 18H15L20 8Z" fill="white" opacity="0.9" />
+            <circle cx="20" cy="25" r="4" fill="white" opacity="0.9" />
+            <defs>
+              <linearGradient
+                id="gradient1"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" style="stop-color: #1cb7bf" />
+                <stop offset="100%" style="stop-color: #1da6ad" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h1 class="title">Random Winner Selector</h1>
+      </header>
+
+      <main class="main">
+        <!-- Winner Selection Section (full width) -->
+        <section class="panel winner-panel">
+          <div class="winner-display">
+            <div class="winner-card" id="winnerCard">
+              <div class="winner-placeholder">
+                <div class="placeholder-icon">
+                  <svg
+                    width="64"
+                    height="64"
+                    viewBox="0 0 64 64"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="32"
+                      cy="32"
+                      r="30"
+                      fill="url(#gradient2)"
+                      opacity="0.1"
+                    />
+                    <path
+                      d="M32 12L40 28H24L32 12Z"
+                      fill="url(#gradient2)"
+                      opacity="0.6"
+                    />
+                    <circle
+                      cx="32"
+                      cy="40"
+                      r="6"
+                      fill="url(#gradient2)"
+                      opacity="0.6"
+                    />
+                    <defs>
+                      <linearGradient
+                        id="gradient2"
+                        x1="0%"
+                        y1="0%"
+                        x2="100%"
+                        y2="100%"
+                      >
+                        <stop offset="0%" style="stop-color: #667eea" />
+                        <stop offset="100%" style="stop-color: #764ba2" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+                <span class="placeholder-text">Ready to select a winner</span>
+                <span class="placeholder-subtext"
+                  >Click the button below to start</span
+                >
+              </div>
+              <div class="winner-content" id="winnerContent">
+                <div class="winner-badge">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  Winner
+                </div>
+                <div class="winner-name" id="winnerName"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="btn btn--primary relative-btn" id="selectBtn">
+              <span class="btn__text">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M10 2L13 8H7L10 2Z" fill="currentColor" />
+                  <circle cx="10" cy="13" r="3" fill="currentColor" />
+                </svg>
+                Select Winner
+              </span>
+              <div class="btn__loading" id="btnLoading">
+                <div class="spinner"></div>
+              </div>
+              <div class="secretShuffle"></div>
+            </button>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="stat__icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16 4C18.2 4 20 5.8 20 8C20 10.2 18.2 12 16 12C13.8 12 12 10.2 12 8C12 5.8 13.8 4 16 4ZM16 14C20.4 14 24 15.8 24 18V20H8V18C8 15.8 11.6 14 16 14Z"
+                    fill="currentColor"
+                    opacity="0.7"
+                  />
+                  <path
+                    d="M8 4C10.2 4 12 5.8 12 8C12 10.2 10.2 12 8 12C5.8 12 4 10.2 4 8C4 5.8 5.8 4 8 4ZM8 14C12.4 14 16 15.8 16 18V20H0V18C0 15.8 3.6 14 8 14Z"
+                    fill="currentColor"
+                    opacity="0.4"
+                  />
+                </svg>
+              </div>
+              <div class="stat__content">
+                <span class="stat__label">Total Participants</span>
+                <span class="stat__value" id="totalParticipants">0</span>
+              </div>
+            </div>
+            <div class="stat">
+              <div class="stat__icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div class="stat__content">
+                <span class="stat__label">Selections Made</span>
+                <span class="stat__value" id="selectionCount">0</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Prize Selection Section (new, simple, like winner selection) -->
+        <section class="panel prize-panel">
+          <div class="prize-display">
+            <div class="prize-card-simple" id="prizeCard">
+              <div class="prize-placeholder" id="prizePlaceholder">
+                <span class="prize-placeholder-icon">🎁</span>
+                <span class="prize-placeholder-text"
+                  >Ready to select a prize</span
+                >
+                <span class="prize-placeholder-subtext"
+                  >Click the button below to start</span
+                >
+              </div>
+              <div class="prize-content" id="prizeContent">
+                <div class="prize-badge">
+                  <span id="prizeIcon">🎁</span>
+                  Prize
+                </div>
+                <div class="prize-name" id="prizeName"></div>
+              </div>
+            </div>
+          </div>
+          <div class="controls">
+            <button class="btn btn--secondary" id="selectPrizeBtn">
+              <span class="btn__text">Select Prize</span>
+              <div class="btn__loading" id="prizeBtnLoading">
+                <div class="spinner"></div>
+              </div>
+            </button>
+          </div>
+          <div class="prize-result" id="prizeResult"></div>
+        </section>
+
+        <div
+          id="participantsLoading"
+          class="loading-state"
+          style="display: none; text-align: center; margin-top: 2rem"
+        >
+          <div class="loading-spinner"></div>
+          <span>Loading participants...</span>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
